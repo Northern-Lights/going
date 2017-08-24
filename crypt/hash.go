@@ -7,6 +7,8 @@ import (
 	"crypto/sha512"
 )
 
+type HashAlgorithm func([]byte) []byte
+
 // Md5 performs MD5 on a byte slice and returns the MD5 hash as a byte slice.
 func Md5(dataIn []byte) (dataOut []byte) {
 	b := md5.Sum(dataIn)
