@@ -7,6 +7,14 @@ import (
 	"crypto/sha512"
 )
 
+// Hash provides quick access to hashing functions through a map.
+var Hash = map[string](func([]byte) []byte){
+	"MD5":    Md5,
+	"SHA1":   Sha1,
+	"SHA256": Sha256,
+	"SHA512": Sha512,
+}
+
 // Md5 performs MD5 on a byte slice and returns the MD5 hash as a byte slice.
 func Md5(dataIn []byte) (dataOut []byte) {
 	b := md5.Sum(dataIn)
