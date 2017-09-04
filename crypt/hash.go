@@ -7,8 +7,13 @@ import (
 	"crypto/sha512"
 )
 
+// A HashAlgorithm takes a slice of bytes, hashes it with an algorithm, and
+// returns the hashed byte slice, which is more flexible/generic than a fixed
+// array.
+type HashAlgorithm func([]byte) []byte
+
 // Hash provides quick access to hashing functions through a map.
-var Hash = map[string](func([]byte) []byte){
+var Hash = map[string](HashAlgorithm){
 	"MD5":    Md5,
 	"SHA1":   Sha1,
 	"SHA256": Sha256,
