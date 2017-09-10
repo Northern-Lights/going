@@ -1,8 +1,8 @@
 package file
 
 import (
+	"bytes"
 	"os"
-	"strings"
 )
 
 // Append opens an existing file or creates a new one and appends data to it.
@@ -34,9 +34,9 @@ func Read(filepath string) (data []byte, err error) {
 }
 
 // ReadLines returns a slice of strings, one for each line in the file.
-func ReadLines(filepath string) (lines []string, err error) {
+func ReadLines(filepath string) (lines [][]byte, err error) {
 	if contents, e1 := Read(filepath); e1 == nil {
-		lines = strings.Split(string(contents), "\n")
+		lines = bytes.Split(contents, []byte("\n"))
 	} else {
 		err = e1
 	}
